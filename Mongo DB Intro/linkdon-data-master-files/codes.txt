@@ -1,0 +1,45 @@
+db.linkedon.count({  
+    salary: {
+        $gt: 25000,
+        },
+})
+
+-----------------------------------------------
+db.linkedon.find({
+    {
+        // run it without empty brackets 
+    },
+    {
+        firstName: 1,
+        salary: 1,
+    },
+}).sort({salary: -1}).limit(3)
+-------------------------------------------------
+db.linkedon.find({
+    $and: [
+        {currentCompany.name: "Walmart"},
+        {salary: {$gte: 7000}},
+    ]
+})
+--------------------------------------------------
+
+db.linkedon.find({
+    {
+         $or: [
+            {currentCompany.industry: "Sales"},
+            {currentCompany.industry: "Retail"},
+        ]
+    },{
+        firstName: 1,
+        lastName: 1,
+        salary: 1,
+        currentCompany.name: 1,
+        _id: 0,
+    }
+).sort({salary: -1}).limit(1)   // or .pop: -1 first item 
+
+-------------------------------------------------------
+
+db.linkedon.count({
+// continuo it 
+})
